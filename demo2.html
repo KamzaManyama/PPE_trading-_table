@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forex Trading Checklist</title>
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --success-color: #16a34a;
+            --warning-color: #ca8a04;
+            --danger-color: #dc2626;
+            --background-color: #f8fafc;
+            --card-background: #ffffff;
+            --text-color: #1e293b;
+            --border-radius: 12px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--card-background);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: var(--primary-color);
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        .forex-header {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, #1e40af 0%, #2563eb 100%);
+            border-radius: var(--border-radius);
+            color: white;
+        }
+
+        .forex-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .forex-title h3 {
+            color: white;
+            margin: 0;
+        }
+
+        .forex-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .forex-pair {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1rem;
+            border-radius: 8px;
+            backdrop-filter: blur(5px);
+        }
+
+        .pair-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .pair-rate {
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .trend-up {
+            color: #4ade80;
+        }
+
+        .trend-down {
+            color: #f87171;
+        }
+
+        .market-status {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .status-indicator {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: #4ade80;
+        }
+
+        .section {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: #f8fafc;
+            border-radius: var(--border-radius);
+            border: 1px solid #e2e8f0;
+        }
+
+        h3 {
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+            font-size: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .checkbox-wrapper {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.75rem;
+            padding: 0.5rem;
+            border-radius: 6px;
+            transition: background-color 0.2s;
+        }
+
+        .checkbox-wrapper:hover {
+            background-color: #f1f5f9;
+        }
+
+        input[type="checkbox"] {
+            width: 1.25rem;
+            height: 1.25rem;
+            margin-right: 0.75rem;
+            cursor: pointer;
+        }
+
+        label {
+            cursor: pointer;
+            font-size: 1rem;
+            color: #475569;
+        }
+
+        button {
+            display: block;
+            width: 100%;
+            padding: 1rem;
+            margin-top: 2rem;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: var(--border-radius);
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        button:hover {
+            background-color: var(--secondary-color);
+        }
+
+        .result {
+            margin-top: 2rem;
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            font-size: 1.25rem;
+            font-weight: 600;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .score-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .score {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background-color: #e2e8f0;
+            border-radius: 4px;
+            margin-top: 1rem;
+            overflow: hidden;
+        }
+
+        .progress {
+            height: 100%;
+            transition: width 0.3s ease;
+            border-radius: 4px;
+        }
+
+        @media (max-width: 640px) {
+            body {
+                padding: 1rem;
+            }
+
+            .container {
+                padding: 1rem;
+            }
+
+            .section {
+                padding: 1rem;
+            }
+
+            .forex-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Forex Trading Checklist</h2>
+
+        <!-- Forex Header Section -->
+        <div class="forex-header">
+            <div class="forex-title">
+                <h3>Major Forex Pairs</h3>
+                <div class="market-status">
+                    <div class="status-indicator"></div>
+                    <span>Market Open</span>
+                </div>
+            </div>
+            <div class="forex-grid">
+                <div class="forex-pair">
+                    <div class="pair-name">EUR/USD</div>
+                    <div class="pair-rate">1.0891 <span class="trend-up">▲</span></div>
+                </div>
+                <div class="forex-pair">
+                    <div class="pair-name">GBP/USD</div>
+                    <div class="pair-rate">1.2634 <span class="trend-down">▼</span></div>
+                </div>
+                <div class="forex-pair">
+                    <div class="pair-name">USD/JPY</div>
+                    <div class="pair-rate">150.42 <span class="trend-up">▲</span></div>
+                </div>
+                <div class="forex-pair">
+                    <div class="pair-name">USD/CHF</div>
+                    <div class="pair-rate">0.8845 <span class="trend-down">▼</span></div>
+                </div>
+            </div>
+        </div>
+
+        <form id="checklistForm">
+            <div class="section">
+                <h3>Physical Well-being (30 Points)</h3>
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="sleep" data-score="5">
+                    <label for="sleep">7-8 hours of sleep</label>
+                </div>
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="breakfast" data-score="5">
+                    <label for="breakfast">Nutritious breakfast</label>
+                </div>
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="hydration" data-score="5">
+                    <label for="hydration">Hydrated</label>
+                </div>
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="exercise" data-score="5">
+                    <label for="exercise">Exercise/stretch</label>
+                </div>
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="energy" data-score="10">
+                    <label for="energy">Energized and alert</label>
+                </div>
+            </div>
+
+            <div class="section">
+                <h3>Mental Clarity (25 Points)</h3>
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="focus" data-score="10">
+                    <label for="focus">Calm and focused</label>
+                </div>
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="meditation" data-score="5">
+                    <label for="meditation">Meditation/mindfulness</label>
+                </div>
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="distractions" data-score="5">
+                    <label for="distractions">Free from distractions</label>
+                </div>
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="plan" data-score="5">
+                    <label for="plan">Reviewed trading plan</label>
+                </div>
+            </div>
+
+            <div class="section">
+                <h3>Emotional State (20 Points)</h3>
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="patience" data-score="5">
+                    <label for="patience">Patient and disciplined</label>
+                </div>
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="emotions" data-score="5">
+                    <label for="emotions">Managing emotions</label>
+                </div>
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="reflection" data-score="5">
+                    <label for="reflection">Reflected on trades</label>
+                </div>
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="confidence" data-score="5">
+                    <label for="confidence">Confident in abilities</label>
+                </div>
+            </div>
+
+            <div class="section">
+                <h3>Trading Readiness (25 Points)</h3>
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="analysis" data-score="10">
+                    <label for="analysis">Analyzed markets</label>
+                </div>
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="strategy" data-score="5">
+                    <label for="strategy">Clear trading strategy</label>
+                </div>
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="platforms" data-score="5">
+                    <label for="platforms">Platforms functioning</label>
+                </div>
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="funds" data-score="5">
+                    <label for="funds">Sufficient funds</label>
+                </div>
+            </div>
+
+            <button type="button" onclick="calculateScore()">Check Trading Readiness</button>
+        </form>
+        <div class="result" id="result"></div>
+        <div class="progress-bar">
+            <div class="progress" id="progress"></div>
+        </div>
+    </div>
+
+    <script>
+        function calculateScore() {
+            let totalScore = 0;
+            document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+                if (checkbox.checked) {
+                    totalScore += parseInt(checkbox.getAttribute('data-score'));
+                }
+            });
+
+            let message = "";
+            let color = "";
+            let progressColor = "";
+
+            if (totalScore >= 90) {
+                message = "You're ready to trade!";
+                color = "var(--success-color)";
+                progressColor = "#16a34a";
+            } else if (totalScore >= 80) {
+                message = "You're close! Review your checklist and adjust.";
+                color = "var(--warning-color)";
+                progressColor = "#ca8a04";
+            } else if (totalScore >= 70) {
+                message = "Caution! Reconsider trading today.";
+                color = "var(--warning-color)";
+                progressColor = "#ca8a04";
+            } else {
+                message = "Do not trade! Focus on self-care.";
+                color = "var(--danger-color)";
+                progressColor = "#dc2626";
+            }
+
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = `
+                <div class="score-container">
+                    <span class="score">${totalScore}</span>
+                    <span>/ 100</span>
+                </div>
+                <div>${message}</div>
+            `;
+            resultDiv.style.color = color;
+
+            const progress = document.getElementById('progress');
+            progress.style.width = `${totalScore}%`;
+            progress.style.backgroundColor = progressColor;
+        }
+
+        // Add animation to checkboxes
+        document.querySelectorAll('.checkbox-wrapper').forEach(wrapper => {
+            wrapper.addEventListener('change', (e) => {
+                if (e.target.checked) {
+                    wrapper.style.backgroundColor = '#e2e8f0';
+                } else {
+                    wrapper.style.backgroundColor = 'transparent';
+                }
+            });
+        });
+
+        // Simulate forex rate updates
+        function updateForexRates() {
+            const pairs = document.querySelectorAll('.forex-pair');
+            pairs.forEach(pair => {
+                const rateElement = pair.querySelector('.pair-rate');
+                const currentRate = parseFloat(rateElement.textContent);
+                const change = (Math.random() - 0.5) * 0.0010;
+                const newRate = (currentRate + change).toFixed(4);
+                const trend = change >= 0 ? '<span class="trend-up">▲</span>' : '<span class="trend-down">▼</span>';
+                rateElement.innerHTML = `${newRate} ${trend}`;
+            });
+        }
+
+        // Update rates every 3 seconds
+        setInterval(updateForexRates, 3000);
+    </script>
+</body>
+</html>
